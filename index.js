@@ -8,6 +8,11 @@ var app = express();
 
 app.set("view engine","jade");
 
+var server = require('http').createServer(app);
+var io = require('socket.io')(server);
+require('./middlewares/sockets.js')(io);
+
+
 app.use('/static', express.static('public'))
 
 app.use(bodyParser.json()); // Para peticiones application/json
@@ -32,8 +37,9 @@ app.post("/signIn",function(request,response){
 	}
 });
 
+
 app.use("/chat",session_middleware);
 app.use("/chat",routes_app);
 
 
-app.listen(8888);
+server.listen(8888);
