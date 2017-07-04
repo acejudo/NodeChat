@@ -2,13 +2,14 @@ extends ../layout.jade
 block contenido
 	script(src="/socket.io/socket.io.js")
 	script(src="/static/Chat.js")
+	input(type="hidden" value="#{user}" id="username")
 	.container
 	.row.center-block
 		.col-md-12
 			.panel.panel-primary
 				#accordion.panel-heading
-					span.glyphicon.glyphicon-comment
-					|  Chat
+					span#User.glyphicon.glyphicon-comment
+					|  Chat #{user}
 					.btn-group.pull-right
 						a.btn.btn-default.btn-xs(type='button', id='collapseId',data-toggle='collapse', data-parent='#accordion', href='#collapseOne')
 							span.glyphicon.glyphicon-chevron-down
@@ -16,28 +17,10 @@ block contenido
 					.panel-body
 						.header
 							ul#ulChat.chat
-								li.left.clearfix
-									span.chat-img.pull-left
-										img.img-circle(src='http://placehold.it/50/55C1E7/fff&text=U', alt='User Avatar')
-									.chat-body.clearfix
-										.header
-											strong.primary-font Jack Sparrow
-										p
-											| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-											| dolor, quis ullamcorper ligula sodales.
-								li.right.clearfix
-									span.chat-img.pull-right
-										img.img-circle(src='http://placehold.it/50/FA6F57/fff&text=ME', alt='User Avatar')
-									.chat-body.clearfix
-										.header
-											strong.pull-right.primary-font Bhaumik Patel
-										p
-											| Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare
-											| dolor, quis ullamcorper ligula sodales.
 						.panel-footer
 							.input-group
 								input#btn-input.form-control.input-sm(type='text', placeholder='Type your message here...')
 								span.input-group-btn
 									button#btn-chat.btn.btn-warning.btn-sm
-										| Send  #{user}
+										| Send
 

@@ -15,8 +15,8 @@ require('./middlewares/sockets.js')(io);
 
 app.use('/static', express.static('public'))
 
-app.use(bodyParser.json()); // Para peticiones application/json
-app.use(bodyParser.urlencoded({extended:true})); // Si esta a false n ose puede parsear objetos
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended:true})); // Si esta a false no se pueden parsear objetos
 
 app.use(session({
 	secret: "werewfwf343ewr",
@@ -29,7 +29,7 @@ app.get("/",function(request,response){
 });
 
 app.post("/signIn",function(request,response){
-	if(request.body.user =="1" && request.body.password=="1"){
+	if(request.body.user!= null){
 		request.session.user = request.body.user;
 		response.redirect("/chat");
 	}else{
