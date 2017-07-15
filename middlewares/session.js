@@ -4,6 +4,6 @@ module.exports  = function(request, response,next){
 			response.locals={user:request.session.user};
 			next();
 		}else{
-				response.redirect("/");
+			response.redirect("/");
 		}
 	};		

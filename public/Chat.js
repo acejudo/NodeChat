@@ -1,12 +1,12 @@
 var blueIcon= 'http://placehold.it/50/FA6F57/fff&amp;text=ME';
 var redIcon = 'http://placehold.it/50/55C1E7/fff&text=U';
-var logo =  blueIcon;
-var align = 'right';
-
 $(document).ready(function() {
 	$("#collapseId").click();
 
 	var socket = io.connect('http://localhost:8888', { 'forceNew': true });
+
+	socket.emit('set_nickname', $("#username").val());
+	
 	socket.on('messages', function(data) {  
   		render(data);
 	});
@@ -22,6 +22,8 @@ $(document).ready(function() {
 	});
 
 	function render(data) {  
+		var logo =  blueIcon;
+		var align = 'right';
 		var texto = data[data.length -1].text;
 		var user =  data[data.length -1].author;
 		if(user == $("#username").val()){
